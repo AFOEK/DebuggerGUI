@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="RadButtonGrp">
+    </Component>
+    <Menu class="javax.swing.JMenuBar" name="MenuBar">
+      <SubComponents>
+        <Menu class="javax.swing.JMenu" name="MenuFile">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="File"/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="MenuEdit">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Edit"/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="MenuView">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="View"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Default Cursor"/>
+            </Property>
+          </Properties>
+        </Menu>
+      </SubComponents>
+    </Menu>
+  </NonVisualComponents>
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="menuBar" type="java.lang.String" value="MenuBar"/>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="760" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="reg_lbl" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="eax_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="ebx_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="ecx_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="edx_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="esp_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="ebp_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="esi_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="edi_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="eip_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="eflag_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="cs_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="ss_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="ds_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="es_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="fs_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="gs_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="st0_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="st1_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="st2_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="st3_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="st4_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="st5_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="st6_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="st7_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="ecxVal_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="st5Val_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="st6Val_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="st7Val_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="ebpVal_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="esiVal_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="ediVal_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="eipVal_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="eflagVal_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="csVal_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="ssVal_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="dsVal_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="esVal_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="fsVal_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="gsVal_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="st0Val_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="st1Val_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="st2Val_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="st3Val_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="st4Val_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="edxVal_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="espVal_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="eaxVal_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="ebxVal_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="RadButtHex" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Value_selector_lbl" min="-2" max="-2" attributes="0"/>
+                                  <Component id="RadButtInt" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace pref="73" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="reg_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="eax_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="ebx_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ebxVal_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="RadButtHex" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="ecx_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ecxVal_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="Value_selector_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="eaxVal_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="RadButtInt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="edx_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="edxVal_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="esp_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="espVal_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="ebp_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ebpVal_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="esi_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="esiVal_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="edi_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ediVal_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="eip_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="eipVal_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="eflag_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="eflagVal_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="cs_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="ss_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="ds_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="es_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="fs_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="gs_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="st0_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="st1_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="st2_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="st3_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="st4_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="st5_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="st6_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="st7_lbl" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="csVal_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="ssVal_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="dsVal_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="esVal_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="fsVal_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="gsVal_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="st0Val_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="st1Val_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="st2Val_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="st3Val_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="st4Val_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="st5Val_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="st6Val_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="st7Val_lbl" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace pref="47" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="reg_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Registers:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="eax_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="EAX :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="ebx_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="EBX:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="ecx_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ECX :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="edx_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="EDX :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="esp_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ESP :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="ebp_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="EBP :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="esi_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ESI :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="edi_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="EDI :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="eip_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="EIP :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="eflag_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="EFlags :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="cs_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="CS :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="ss_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="SS :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="es_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ES :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="ds_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="DS :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="gs_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="GS :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="fs_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="FS :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="st1_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ST1 :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="st3_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ST3: "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="st2_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ST2 :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="st5_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ST5:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="st4_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ST4 :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="st0_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ST0 :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="st7_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ST7:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="st6_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ST6 :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="st2Val_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ST2 :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="st5Val_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ST5:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="st4Val_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ST4 :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="st0Val_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ST0: "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="st7Val_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ST7:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="st6Val_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ST6 :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="esiVal_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ESI :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="ediVal_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="EDI :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="eipVal_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="EIP :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="eflagVal_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="EFlags :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="csVal_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="CS :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="ssVal_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="SS :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="esVal_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ES :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="dsVal_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="DS :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="gsVal_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="GS :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="fsVal_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="FS :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="eaxVal_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0x00000000000000000000"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="ebxVal_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="EBX:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="ecxVal_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ECX :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="edxVal_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="EDX :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="espVal_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ESP :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="ebpVal_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="EBP :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="st1Val_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ST1 :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="st3Val_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ST3: "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="Value_selector_lbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Value type:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="RadButtInt">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="RadButtonGrp"/>
+        </Property>
+        <Property name="selected" type="boolean" value="true"/>
+        <Property name="text" type="java.lang.String" value="Integer"/>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="RadButtIntItemStateChanged"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="RadButtHex">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="RadButtonGrp"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Hexadecimal"/>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="RadButtHexItemStateChanged"/>
+      </Events>
+    </Component>
+  </SubComponents>
+</Form>
