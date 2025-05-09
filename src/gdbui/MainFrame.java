@@ -1,17 +1,24 @@
 package gdbui;
 
+import java.io.File;
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
 import java.math.BigInteger;
-import java.lang.NumberFormatException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import org.fife.ui.rsyntaxtextarea.*;
+import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 
 public class MainFrame extends javax.swing.JFrame {
     
-    public JLabel[] labels_cpu;  
-    public JLabel[] labels_fpu;
-
+    private JLabel[] labels_cpu;  
+    private JLabel[] labels_fpu;
+    private RSyntaxTextArea rSyntaxTxtArea;
+    
     public MainFrame() {
         initComponents();
-
+        addRSyntaxTextArea();
         this.labels_cpu = new javax.swing.JLabel[]{eaxVal_lbl, ebxVal_lbl, ecxVal_lbl, edxVal_lbl, espVal_lbl, ebpVal_lbl, esiVal_lbl, ediVal_lbl, eipVal_lbl, csVal_lbl, ssVal_lbl, esVal_lbl, dsVal_lbl, gsVal_lbl, fsVal_lbl};
         this.labels_fpu = new javax.swing.JLabel[]{st0Val_lbl, st1Val_lbl, st2Val_lbl, st3Val_lbl, st4Val_lbl, st5Val_lbl, st6Val_lbl, st7Val_lbl};
 
@@ -91,8 +98,11 @@ public class MainFrame extends javax.swing.JFrame {
         Value_selector_lbl = new javax.swing.JLabel();
         RadButtInt = new javax.swing.JRadioButton();
         RadButtHex = new javax.swing.JRadioButton();
+        ScrollSrc = new javax.swing.JScrollPane();
+        EditorSrc = new javax.swing.JEditorPane();
         MenuBar = new javax.swing.JMenuBar();
         MenuFile = new javax.swing.JMenu();
+        MenuOpn = new javax.swing.JMenuItem();
         MenuEdit = new javax.swing.JMenu();
         MenuView = new javax.swing.JMenu();
 
@@ -180,7 +190,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         fsVal_lbl.setText("FS :");
 
-        eaxVal_lbl.setText("0x00000000000000000000");
+        eaxVal_lbl.setText("EAX: ");
 
         ebxVal_lbl.setText("EBX:");
 
@@ -215,7 +225,22 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        EditorSrc.setEditable(false);
+        EditorSrc.setFont(new java.awt.Font("NotoMono NF", 0, 15)); // NOI18N
+        EditorSrc.setToolTipText("");
+        EditorSrc.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        ScrollSrc.setViewportView(EditorSrc);
+
         MenuFile.setText("File");
+
+        MenuOpn.setText("Open File");
+        MenuOpn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuOpnActionPerformed(evt);
+            }
+        });
+        MenuFile.add(MenuOpn);
+
         MenuBar.add(MenuFile);
 
         MenuEdit.setText("Edit");
@@ -232,9 +257,10 @@ public class MainFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(760, 760, 760)
+                .addContainerGap()
+                .addComponent(ScrollSrc, javax.swing.GroupLayout.PREFERRED_SIZE, 1088, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(reg_lbl)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(eax_lbl)
@@ -287,131 +313,144 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(espVal_lbl)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(eaxVal_lbl)
-                                    .addComponent(ebxVal_lbl))
-                                .addGap(18, 18, 18)
+                                    .addComponent(ebxVal_lbl)
+                                    .addComponent(eaxVal_lbl))
+                                .addGap(56, 56, 56)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(RadButtHex)
                                     .addComponent(Value_selector_lbl)
-                                    .addComponent(RadButtInt))))))
-                .addContainerGap(73, Short.MAX_VALUE))
+                                    .addComponent(RadButtInt)))))
+                    .addComponent(reg_lbl))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ScrollSrc)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(reg_lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(eax_lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ebx_lbl)
-                            .addComponent(ebxVal_lbl)
-                            .addComponent(RadButtHex))
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(reg_lbl)
+                                .addGap(12, 12, 12)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(eax_lbl)
+                                    .addComponent(eaxVal_lbl))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(ebx_lbl)
+                                    .addComponent(ebxVal_lbl)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(54, 54, 54)
+                                .addComponent(RadButtHex))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Value_selector_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(RadButtInt)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ecx_lbl)
-                            .addComponent(ecxVal_lbl)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Value_selector_lbl)
+                            .addComponent(ecxVal_lbl))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(eaxVal_lbl)
-                            .addComponent(RadButtInt))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(edx_lbl)
-                    .addComponent(edxVal_lbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(esp_lbl)
-                    .addComponent(espVal_lbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ebp_lbl)
-                    .addComponent(ebpVal_lbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(esi_lbl)
-                    .addComponent(esiVal_lbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(edi_lbl)
-                    .addComponent(ediVal_lbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eip_lbl)
-                    .addComponent(eipVal_lbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eflag_lbl)
-                    .addComponent(eflagVal_lbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(cs_lbl)
+                            .addComponent(edx_lbl)
+                            .addComponent(edxVal_lbl))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ss_lbl)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(esp_lbl)
+                            .addComponent(espVal_lbl))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ds_lbl)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ebp_lbl)
+                            .addComponent(ebpVal_lbl))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(es_lbl)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(esi_lbl)
+                            .addComponent(esiVal_lbl))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fs_lbl)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(edi_lbl)
+                            .addComponent(ediVal_lbl))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(gs_lbl)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(eip_lbl)
+                            .addComponent(eipVal_lbl))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(st0_lbl)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(eflag_lbl)
+                            .addComponent(eflagVal_lbl))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(st1_lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(st2_lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(st3_lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(st4_lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(st5_lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(st6_lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(st7_lbl))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(csVal_lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ssVal_lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dsVal_lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(esVal_lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fsVal_lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(gsVal_lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(st0Val_lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(st1Val_lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(st2Val_lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(st3Val_lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(st4Val_lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(st5Val_lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(st6Val_lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(st7Val_lbl)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cs_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ss_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ds_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(es_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fs_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(gs_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(st0_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(st1_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(st2_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(st3_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(st4_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(st5_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(st6_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(st7_lbl))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(csVal_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ssVal_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dsVal_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(esVal_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fsVal_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(gsVal_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(st0Val_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(st1Val_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(st2Val_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(st3Val_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(st4Val_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(st5Val_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(st6Val_lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(st7Val_lbl)))
+                        .addGap(0, 29, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addRSyntaxTextArea(){
+        rSyntaxTxtArea = new RSyntaxTextArea();
+        rSyntaxTxtArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_C);
+        
+    }
     private void RadButtIntItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_RadButtIntItemStateChanged
         String getTxt;
         if(RadButtInt.isSelected()){
@@ -472,6 +511,56 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_RadButtHexItemStateChanged
 
+    private void MenuOpnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuOpnActionPerformed
+        if(evt.getSource() == MenuOpn){
+        JFileChooser FileChooser = new JFileChooser();
+        FileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+         
+        FileChooser.setFileFilter(new FileFilter(){
+        @Override
+        public boolean accept(File f){
+            if(f.isDirectory()){
+                return false;
+            }
+            
+            String filename = f.getName().toLowerCase();
+            return filename.endsWith(".c") || filename.endsWith(".cpp") || filename.endsWith(".h")|| filename.endsWith(".hpp") || filename.endsWith(".asm") || filename.endsWith(".s") || filename.endsWith(".inc");
+        }
+        
+        @Override
+        public String getDescription(){
+            return "C/C++ and Assembly source code files (*.c, *.cpp, *.h, *hpp, *.asm, *.s, *.inc)";
+        }
+        });
+        int ReturnVal = FileChooser.showOpenDialog(this);
+         
+        if(ReturnVal == JFileChooser.APPROVE_OPTION){
+           File f = FileChooser.getSelectedFile();
+           try{
+               String fileExtentions = f.getName().toLowerCase();
+               RSyntaxTextArea rSyntaxTxtArea = new RSyntaxTextArea();
+               String Fcontent = new String(Files.readAllBytes(Paths.get(f.getAbsolutePath())));
+               rSyntaxTxtArea.setText(Fcontent);
+               
+               if(fileExtentions.endsWith(".cpp") || fileExtentions.endsWith(".hpp")){
+                   rSyntaxTxtArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_CPLUSPLUS);
+               } else if (fileExtentions.endsWith(".c") || fileExtentions.endsWith(".h")){
+                   rSyntaxTxtArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_C);
+               }
+               else if (fileExtentions.endsWith(".asm") || fileExtentions.endsWith(".s") || fileExtentions.endsWith(".inc")) {
+                   rSyntaxTxtArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_ASSEMBLER_X86);
+               }
+               
+               rSyntaxTxtArea.setCodeFoldingEnabled(true);
+               rSyntaxTxtArea.setFont(new java.awt.Font("Noto mono", java.awt.Font.PLAIN, 15));
+               
+           } catch (Exception e){
+               
+           }
+         }
+        }
+    }//GEN-LAST:event_MenuOpnActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -504,13 +593,16 @@ public class MainFrame extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JEditorPane EditorSrc;
     private javax.swing.JMenuBar MenuBar;
     private javax.swing.JMenu MenuEdit;
     private javax.swing.JMenu MenuFile;
+    private javax.swing.JMenuItem MenuOpn;
     private javax.swing.JMenu MenuView;
     private javax.swing.JRadioButton RadButtHex;
     private javax.swing.JRadioButton RadButtInt;
     private javax.swing.ButtonGroup RadButtonGrp;
+    private javax.swing.JScrollPane ScrollSrc;
     private javax.swing.JLabel Value_selector_lbl;
     private javax.swing.JLabel csVal_lbl;
     private javax.swing.JLabel cs_lbl;
